@@ -13,3 +13,9 @@ li {
     color: $black;
   }
 }
+
+nav {
+  > .active {
+    color: $green;
+  }
+}

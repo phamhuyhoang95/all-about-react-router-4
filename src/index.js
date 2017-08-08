@@ -1,7 +1,7 @@
 require('./index.scss');
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
 const docRoot = document.getElementById('root');
 
@@ -22,7 +22,13 @@ const PrimaryLayout = props => (
 
 const Primaryheader = () => (
   <header>
-    Header: Our React Router 4 App
+    <h1>Welcome to our app!</h1>
+    <nav>
+      <NavLink to="/" exact activeClassName="active">Home</NavLink> |
+      <NavLink to="/users" activeClassName="active">Users</NavLink> |
+      <NavLink to="/users/1" activeClassName="active">Users 1</NavLink> |
+      <NavLink to="/products" activeClassName="active">Products</NavLink> |
+    </nav>
     <hr/>
   </header>
 );
