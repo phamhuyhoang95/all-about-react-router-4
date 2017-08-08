@@ -11,10 +11,8 @@ const PrimaryLayout = props => (
     <main>
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/users" component={BrowseUsersPage} exact />
-        <Route path="/users/:userId" component={UserProfilePage} />
-        <Route path="/products" component={BrowseProductsPage} exact />
-        <Route path="/products/:productId" component={ProductProfilePage} />
+        <Route path="/users" component={UserSubLayout} />
+        <Route path="/products" component={ProductSubLayout} />
         <Redirect to="/" />
       </Switch>
     </main>
@@ -25,7 +23,6 @@ const PrimaryLayout = props => (
 const Primaryheader = () => (
   <header>
     Header: Our React Router 4 App
-    <Route path="/users" component={UsersMenu} />
     <hr/>
   </header>
 );
@@ -38,11 +35,59 @@ const PrimaryFooter = () => (
 );
 
 const HomePage = () => <div>Home Page</div>
-const UsersMenu = () => <div>Users Menu</div>
-const BrowseUsersPage = () => <div>Browse Users Page</div>
-const UserProfilePage = () => <div>User Profile Page</div>
+
+const UserSubLayout = props => (
+  <div className="user-sub-layout">
+    <aside>
+      <UserNav />
+    </aside>
+    <div className="primary-content">
+      <Switch>
+        <Route path={props.match.path} component={BrowseUsersPage} exact />
+        <Route path={`${props.match.path}/:userId`} component={UserProfilePage} />
+      </Switch>
+    </div>
+  </div>
+);
+
+const BrowseUsersPage = () => (
+  <div className="user-sub-layout">
+    <div className="primary-content">
+      <BrowseUserTable />
+    </div>
+  </div>
+);
+
+const UserProfilePage = props => (
+  <div className="user-sub-layout">
+    <div className="primary-content">
+      <UserProfile userId={props.match.params.userId} />
+    </div>
+  </div>
+);
+
+const UserNav = () => <div>User Nav</div>
+const BrowseUserTable = () => <div>Browse User Table</div>
+const UserProfile = props => <div>User Profile {props.userId}</div>
+
+const ProductSubLayout = props => (
+  <div className="product-sub-layout">
+    <aside>
+      <ProductNav />
+    </aside>
+    <div className="primary-content">
+      <Switch>
+        <Route path={props.match.path} component={BrowseProductsPage} exact />
+        <Route path={`${props.match.path}/:productId`} component={ProductProfilePage} />
+      </Switch>
+    </div>
+  </div>
+);
+
+const ProductNav = () => <div>Product Nav</div>
 const BrowseProductsPage = () => <div>Browse Products Page</div>
 const ProductProfilePage = () => <div>Product Profile Page</div>
+
 const NoMatchPage = () => <div>404 Not Found</div>
 
 render(
