@@ -36,19 +36,24 @@ const PrimaryFooter = () => (
 
 const HomePage = () => <div>Home Page</div>
 
-const UserSubLayout = props => (
-  <div className="user-sub-layout">
-    <aside>
-      <UserNav />
-    </aside>
-    <div className="primary-content">
-      <Switch>
-        <Route path={props.match.path} component={BrowseUsersPage} exact />
-        <Route path={`${props.match.path}/:userId`} component={UserProfilePage} />
-      </Switch>
+const UserSubLayout = props => {
+  const { match } = props;
+  return (
+    <div className="user-sub-layout">
+      <aside>
+        <UserNav />
+      </aside>
+      <div className="primary-content">
+        <Switch>
+          <Route path={match.path} component={BrowseUsersPage} exact />
+          <Route path={`${match.path}/add`} component={AddUserPage} />
+          <Route path={`${match.path}/:userId/edit`} component={EditUserPage} />
+          <Route path={`${match.path}/:userId`} component={UserProfilePage} />
+        </Switch>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const BrowseUsersPage = () => (
   <div className="user-sub-layout">
@@ -57,6 +62,9 @@ const BrowseUsersPage = () => (
     </div>
   </div>
 );
+
+const AddUserPage = () => <div>Add User Page</div>
+const EditUserPage = () => <div>Edit User Page</div>
 
 const UserProfilePage = props => (
   <div className="user-sub-layout">
