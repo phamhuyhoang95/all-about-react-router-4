@@ -1,10 +1,10 @@
 {
-  "name": "sydinh-blogger",
+  "name": "all-about-react-router-4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server && npm run eslint --fix",
+    "dev": "webpack-dev-server",
     "prod": "npm run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf ./build/*",
     "stylelint": "stylelint 'src/*.scss'",
