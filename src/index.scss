@@ -1,0 +1,15 @@
+$red: red;
+$green: green;
+$black: black;
+
+html,
+body {
+  color: red;
+  position: relative;
+}
+
+li {
+  > .active {
+    color: $black;
+  }
+}
