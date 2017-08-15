@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
+import CardProfile from './components/card-profile';
+import CardAccordion from './components/card-accordion';
+import CardInterests from './components/card-interests';
+import AlertBox from './components/alert-box';
+
 const docRoot = document.getElementById('root');
 
 const PrimaryLayout = props => (
@@ -15,6 +20,10 @@ const PrimaryLayout = props => (
     <main role="main">
       <Switch>
         <Route path="/" component={HomePage} exact />
+        <Route path="/news" component={NewsPage} />
+        <Route path="/account-setting" component={AccountSettingPage} />
+        <Route path="/messages" component={MessagePage} />
+        <Route path="/my-account" component={MyAccountPage} />
         <Route path="/users" component={UserSubLayout} />
         <Route path="/products" component={ProductSubLayout} />
         <Redirect to="/" />
@@ -25,7 +34,6 @@ const PrimaryLayout = props => (
     {/* primary footer */}
     <PrimaryFooter />
     {/* end primary footer */}
-
   </div>
 );
 
@@ -34,21 +42,39 @@ const Primaryheader = () => (
     {/* Navbar */}
     <div className="w3-top">
       <div className="w3-bar w3-theme-d2 w3-left-align w3-large">
-        <NavLink className="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" to="/">
-          <i className="fa fa-bars"></i>
-        </NavLink>
-        <NavLink to="/" className="w3-bar-item w3-button w3-padding-large w3-theme-d4">
+        <NavLink
+          to="/"
+          className="w3-bar-item w3-button w3-padding-large"
+          activeClassName="w3-theme-d4"
+          exact
+        >
           <i className="fa fa-home w3-margin-right"></i>Logo
         </NavLink>
-        <NavLink to="/users/1" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News">
+        <NavLink
+          to="/news"
+          className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+          title="News"
+          activeClassName="w3-theme-d4"
+        >
           <i className="fa fa-globe"></i>
         </NavLink>
-        <NavLink to="/users" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings">
+        <NavLink
+          to="/account-setting"
+          className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+          title="Account Settings"
+          activeClassName="w3-theme-d4"
+        >
           <i className="fa fa-user"></i>
         </NavLink>
-        <NavLink to="/products" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages">
+        <NavLink
+          to="/messages"
+          className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+          title="Messages"
+          activeClassName="w3-theme-d4"
+        >
           <i className="fa fa-envelope"></i>
         </NavLink>
+
         <div className="w3-dropdown-hover w3-hide-small">
           <button className="w3-button w3-padding-large" title="Notifications">
             <i className="fa fa-bell"></i>
@@ -60,7 +86,12 @@ const Primaryheader = () => (
             <NavLink to="/" className="w3-bar-item w3-button">Jane likes your post</NavLink>
           </div>
         </div>
-        <NavLink to="/" className="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+
+        <NavLink
+          to="/my-account"
+          className="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+          title="My Account"
+        >
           <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" className="w3-circle" style={{ height: '25px', width: '25px' }} alt="Avatar" />
         </NavLink>
       </div>
@@ -80,105 +111,24 @@ const PrimaryFooter = () => (
 );
 
 const HomePage = () => (
-  <div className="w3-container w3-content" style={{ maxWidth:'1400px', marginTop: '80px' }}>
+  <div className="w3-container w3-content" style={{ maxWidth: '1400px', marginTop: '80px' }}>
     {/* The Grid */}
     <div className="w3-row">
       {/* Left Column */}
       <div className="w3-col m3">
         {/* Profile */}
-        <div className="w3-card-2 w3-round w3-white">
-          <div className="w3-container">
-            <h4 className="w3-center">My Profile</h4>
-            <p className="w3-center">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" className="w3-circle" style={{ height: '106px', width: '106px' }} alt="Avatar" />
-            </p>
-            <hr />
-            <p><i className="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Frontend Dev, UI</p>
-            <p><i className="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Da Nang, VIET NAM</p>
-            <p><i className="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 7, 1996</p>
-          </div>
-        </div>
+        <CardProfile />
         <br />
-
         {/* Accordion */}
-        <div className="w3-card-2 w3-round">
-          <div className="w3-white">
-            <button className="w3-button w3-block w3-theme-l1 w3-left-align">
-              <i className="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups
-            </button>
-            <div className="w3-hide w3-container">
-              <p>Some text..</p>
-            </div>
-            <button className="w3-button w3-block w3-theme-l1 w3-left-align">
-              <i className="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events
-            </button>
-            <div className="w3-hide w3-container">
-              <p>Some other text..</p>
-            </div>
-            <button className="w3-button w3-block w3-theme-l1 w3-left-align">
-              <i className="fa fa-users fa-fw w3-margin-right"></i> My Photos
-            </button>
-            <div className="w3-hide w3-container">
-          <div className="w3-row-padding">
-          <br />
-            <div className="w3-half">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" style={{ width: '100%' }} className="w3-margin-bottom" />
-            </div>
-            <div className="w3-half">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" style={{ width: '100%' }} className="w3-margin-bottom" />
-            </div>
-            <div className="w3-half">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" style={{ width: '100%' }} className="w3-margin-bottom" />
-            </div>
-            <div className="w3-half">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" style={{ width: '100%' }} className="w3-margin-bottom" />
-            </div>
-            <div className="w3-half">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" style={{ width: '100%' }} className="w3-margin-bottom" />
-            </div>
-            <div className="w3-half">
-              <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" style={{ width: '100%' }} className="w3-margin-bottom" />
-            </div>
-          </div>
-            </div>
-          </div>
-        </div>
+        <CardAccordion />
         <br />
-
         {/* Interests */}
-        <div className="w3-card-2 w3-round w3-white w3-hide-small">
-          <div className="w3-container">
-            <p>Interests</p>
-            <p>
-              <span className="w3-tag w3-small w3-theme-d5">HTML5</span>
-              <span className="w3-tag w3-small w3-theme-d4">CSS3</span>
-              <span className="w3-tag w3-small w3-theme-d3">Javascript</span>
-              <span className="w3-tag w3-small w3-theme-d2">Jquery</span>
-              <span className="w3-tag w3-small w3-theme-d1">Bootstrap</span>
-              <span className="w3-tag w3-small w3-theme">Pugjs</span>
-              <span className="w3-tag w3-small w3-theme-l1">SASS</span>
-              <span className="w3-tag w3-small w3-theme-l2">BEM</span>
-              <span className="w3-tag w3-small w3-theme-l3">Design</span>
-              <span className="w3-tag w3-small w3-theme-l4">JS Framework</span>
-              <span className="w3-tag w3-small w3-theme-l5">React</span>
-              <span className="w3-tag w3-small w3-theme-l6">React with Redux</span>
-              <span className="w3-tag w3-small w3-theme-l7">English</span>
-            </p>
-          </div>
-        </div>
+        <CardInterests />
         <br />
-
         {/* Alert Box */}
-        <div className="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-          <span className="w3-button w3-theme-l3 w3-display-topright">
-            <i className="fa fa-remove"></i>
-          </span>
-          <p><strong>Hey!</strong></p>
-          <p>People are looking at your profile. Find out who.</p>
-        </div>
-
-      {/* End Left Column */}
+        <AlertBox />
       </div>
+      {/* End Left Column */}
 
       {/* Middle Column */}
       <div className="w3-col m7">
@@ -306,6 +256,38 @@ const HomePage = () => (
   </div>
 );
 
+const NewsPage = () => (
+  <div className="w3-container w3-content new-page" style={{ maxWidth: '1400px', marginTop: '80px' }}>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil dignissimos et, maiores placeat culpa voluptatum. Quos porro quibusdam sint neque. Incidunt aliquid impedit sed officia consectetur quos. Dolore inventore et natus. Mollitia optio libero praesentium alias? Quam, cum incidunt voluptatum quis eveniet adipisci facilis optio aliquid tempora corporis amet sunt aliquam dolorum, impedit, molestias quia est dignissimos obcaecati? Maiores, dignissimos laborum soluta, quam tenetur ea vero cupiditate distinctio itaque molestiae, id atque asperiores provident? Quasi molestiae nemo eligendi quis quisquam recusandae impedit eos mollitia non, sit sint corporis suscipit neque, assumenda eveniet, id itaque. Commodi saepe vero debitis vel sint?</p>
+    <hr />
+    <h1>News page</h1>
+  </div>
+);
+
+const AccountSettingPage = () => (
+  <div className="w3-container w3-content account-setting-page" style={{ maxWidth: '1400px', marginTop: '80px' }}>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil dignissimos et, maiores placeat culpa voluptatum. Quos porro quibusdam sint neque. Incidunt aliquid impedit sed officia consectetur quos. Dolore inventore et natus. Mollitia optio libero praesentium alias? Quam, cum incidunt voluptatum quis eveniet adipisci facilis optio aliquid tempora corporis amet sunt aliquam dolorum, impedit, molestias quia est dignissimos obcaecati? Maiores, dignissimos laborum soluta, quam tenetur ea vero cupiditate distinctio itaque molestiae, id atque asperiores provident? Quasi molestiae nemo eligendi quis quisquam recusandae impedit eos mollitia non, sit sint corporis suscipit neque, assumenda eveniet, id itaque. Commodi saepe vero debitis vel sint?</p>
+    <hr />
+    <h1>Account setting page</h1>
+  </div>
+);
+
+const MessagePage = () => (
+  <div className="w3-container w3-content message-page" style={{ maxWidth: '1400px', marginTop: '80px' }}>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil dignissimos et, maiores placeat culpa voluptatum. Quos porro quibusdam sint neque. Incidunt aliquid impedit sed officia consectetur quos. Dolore inventore et natus. Mollitia optio libero praesentium alias? Quam, cum incidunt voluptatum quis eveniet adipisci facilis optio aliquid tempora corporis amet sunt aliquam dolorum, impedit, molestias quia est dignissimos obcaecati? Maiores, dignissimos laborum soluta, quam tenetur ea vero cupiditate distinctio itaque molestiae, id atque asperiores provident? Quasi molestiae nemo eligendi quis quisquam recusandae impedit eos mollitia non, sit sint corporis suscipit neque, assumenda eveniet, id itaque. Commodi saepe vero debitis vel sint?</p>
+    <hr />
+    <h1>Message page</h1>
+  </div>
+);
+
+const MyAccountPage = () => (
+  <div className="w3-container w3-content my-account-page" style={{ maxWidth: '1400px', marginTop: '80px' }}>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil dignissimos et, maiores placeat culpa voluptatum. Quos porro quibusdam sint neque. Incidunt aliquid impedit sed officia consectetur quos. Dolore inventore et natus. Mollitia optio libero praesentium alias? Quam, cum incidunt voluptatum quis eveniet adipisci facilis optio aliquid tempora corporis amet sunt aliquam dolorum, impedit, molestias quia est dignissimos obcaecati? Maiores, dignissimos laborum soluta, quam tenetur ea vero cupiditate distinctio itaque molestiae, id atque asperiores provident? Quasi molestiae nemo eligendi quis quisquam recusandae impedit eos mollitia non, sit sint corporis suscipit neque, assumenda eveniet, id itaque. Commodi saepe vero debitis vel sint?</p>
+    <hr />
+    <h1>My Account Page</h1>
+  </div>
+);
+
 const UserSubLayout = props => {
   const { match } = props;
   return (
@@ -365,8 +347,6 @@ const ProductSubLayout = props => (
 const ProductNav = () => <div>Product Nav</div>
 const BrowseProductsPage = () => <div>Browse Products Page</div>
 const ProductProfilePage = () => <div>Product Profile Page</div>
-
-const NoMatchPage = () => <div>404 Not Found</div>
 
 render(
   <Router>
