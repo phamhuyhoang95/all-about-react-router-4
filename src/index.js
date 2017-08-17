@@ -7,6 +7,7 @@ import CardProfile from './components/card-profile';
 import CardAccordion from './components/card-accordion';
 import CardInterests from './components/card-interests';
 import AlertBox from './components/alert-box';
+import UpcomingEvents from './components/upcoming-events';
 
 const docRoot = document.getElementById('root');
 
@@ -202,15 +203,7 @@ const HomePage = () => (
 
       {/* Right Column */}
       <div className="w3-col m2">
-        <div className="w3-card-2 w3-round w3-white w3-center">
-          <div className="w3-container">
-            <p>Upcoming Events:</p>
-            <img src="https://avatars2.githubusercontent.com/u/176013?v=4" alt="Forest" style={{ width: '100%' }} />
-            <p><strong>Holiday</strong></p>
-            <p>Friday 15:00</p>
-            <p><button className="w3-button w3-block w3-theme-l4">Info</button></p>
-          </div>
-        </div>
+        <UpcomingEvents />
         <br />
 
         <div className="w3-card-2 w3-round w3-white w3-center">
@@ -243,8 +236,8 @@ const HomePage = () => (
           <p><i className="fa fa-bug w3-xxlarge"></i></p>
         </div>
 
-      {/* End Right Column */}
       </div>
+      {/* End Right Column */}
 
     {/* End Grid */}
     </div>
