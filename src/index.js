@@ -38,63 +38,61 @@ const PrimaryLayout = props => (
 );
 
 const Primaryheader = () => (
-  <header>
+  <header className="w3-top">
     {/* Navbar */}
-    <div className="w3-top">
-      <div className="w3-bar w3-theme-d2 w3-left-align w3-large">
-        <NavLink
-          to="/"
-          className="w3-bar-item w3-button w3-padding-large"
-          activeClassName="w3-theme-d4"
-          exact
-        >
-          <i className="fa fa-home w3-margin-right"></i>Logo
-        </NavLink>
-        <NavLink
-          to="/news"
-          className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-          title="News"
-          activeClassName="w3-theme-d4"
-        >
-          <i className="fa fa-globe"></i>
-        </NavLink>
-        <NavLink
-          to="/account-setting"
-          className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-          title="Account Settings"
-          activeClassName="w3-theme-d4"
-        >
-          <i className="fa fa-user"></i>
-        </NavLink>
-        <NavLink
-          to="/messages"
-          className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-          title="Messages"
-          activeClassName="w3-theme-d4"
-        >
-          <i className="fa fa-envelope"></i>
-        </NavLink>
+    <div className="w3-bar w3-theme-d2 w3-left-align w3-large">
+      <NavLink
+        to="/"
+        className="w3-bar-item w3-button w3-padding-large"
+        activeClassName="w3-theme-d4"
+        exact
+      >
+        <i className="fa fa-home w3-margin-right"></i>Logo
+      </NavLink>
+      <NavLink
+        to="/news"
+        className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="News"
+        activeClassName="w3-theme-d4"
+      >
+        <i className="fa fa-globe"></i>
+      </NavLink>
+      <NavLink
+        to="/account-setting"
+        className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Account Settings"
+        activeClassName="w3-theme-d4"
+      >
+        <i className="fa fa-user"></i>
+      </NavLink>
+      <NavLink
+        to="/messages"
+        className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Messages"
+        activeClassName="w3-theme-d4"
+      >
+        <i className="fa fa-envelope"></i>
+      </NavLink>
 
-        <div className="w3-dropdown-hover w3-hide-small">
-          <button className="w3-button w3-padding-large" title="Notifications">
-            <i className="fa fa-bell"></i>
-            <span className="w3-badge w3-right w3-small w3-green">3</span>
-          </button>
-          <div className="w3-dropdown-content w3-card-4 w3-bar-block" style={{ width: '300px' }}>
-            <NavLink to="/" className="w3-bar-item w3-button">One new friend request</NavLink>
-            <NavLink to="/" className="w3-bar-item w3-button">John Doe posted on your wall</NavLink>
-            <NavLink to="/" className="w3-bar-item w3-button">Jane likes your post</NavLink>
-          </div>
+      <div className="w3-dropdown-hover w3-hide-small">
+        <button className="w3-button w3-padding-large" title="Notifications">
+          <i className="fa fa-bell"></i>
+          <span className="w3-badge w3-right w3-small w3-green">3</span>
+        </button>
+        <div className="w3-dropdown-content w3-card-4 w3-bar-block" style={{ width: '300px' }}>
+          <NavLink to="/" className="w3-bar-item w3-button">One new friend request</NavLink>
+          <NavLink to="/" className="w3-bar-item w3-button">John Doe posted on your wall</NavLink>
+          <NavLink to="/" className="w3-bar-item w3-button">Jane likes your post</NavLink>
         </div>
-
-        <NavLink
-          to="/my-account"
-          className="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
-          title="My Account"
-        >
-          <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" className="w3-circle" style={{ height: '25px', width: '25px' }} alt="Avatar" />
-        </NavLink>
       </div>
+
+      <NavLink
+        to="/my-account"
+        className="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+        title="My Account"
+      >
+        <img src="https://avatars1.githubusercontent.com/u/25724537?v=4" className="w3-circle" style={{ height: '25px', width: '25px' }} alt="Avatar" />
+      </NavLink>
     </div>
   </header>
 );
